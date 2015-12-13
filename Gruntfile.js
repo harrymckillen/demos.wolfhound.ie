@@ -1,3 +1,6 @@
+'use script';
+/* global 
+  grunt */
 module.exports = function (grunt) {
   grunt.log.writeln('Testing');
   grunt.log.oklns('Testing');
@@ -14,11 +17,11 @@ module.exports = function (grunt) {
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'build/'},
           {expand: true, cwd: 'src/', src: ['js/**'], dest: 'build/'}
         ]
-      },
+      }
     },
     sass: {
       options: {
-        style: 'compressed',
+        style: 'expanded',
         sourcemap: 'none'
       },
       build: {
@@ -31,10 +34,6 @@ module.exports = function (grunt) {
             ext: '.css'
           }
         ]
-        /*{
-          'build/css/*.css': 'src/sass/*.scss',
-          'build/css/demos/*.css': 'src/sass/demos/*.scss'
-        }*/
       }
     },
     connect: {
@@ -58,9 +57,9 @@ module.exports = function (grunt) {
         files: '**/*.scss',
         tasks: ['sass:build'],
         options: {
-          livereload: true,
-        },
-      },
+          livereload: true
+        }
+      }
     },
     processhtml: {
       options: {
@@ -70,8 +69,8 @@ module.exports = function (grunt) {
         }
       },
       build: {
-        files: [ 
-          {expand: true, cwd: 'build/', src: ['*.html'], dest: 'build/'} 
+        files: [
+          {expand: true, cwd: 'build/', src: ['*.html'], dest: 'build/'}
         ]
       }
     }
@@ -98,7 +97,6 @@ module.exports = function (grunt) {
   grunt.registerTask('serve',
     [
       'build',
-      'watch',
-      'connect'
+      'watch'
     ]);
 };
