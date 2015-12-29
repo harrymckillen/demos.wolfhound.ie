@@ -6,8 +6,8 @@ $base-unit:10px;
 $pixel-outline: #000;
 $mushroom-spot-color: #fff;
 $mushroom-face-color: #fff;
-/* $mushroom-fill-color: #d30102; // red */
-$mushroom-fill-color: #21aa52; // green
+$mushroom-fill-color: #d30102; // red
+// $mushroom-fill-color: #21aa52; // green
 
 .mushroom-container{
   width: $base-unit*17;
@@ -20,7 +20,11 @@ $mushroom-fill-color: #21aa52; // green
 }
 
 .background {
-  background: #0f0;
+  background: #e1e1e1;
+}
+
+.push-left{
+  margin-left: $base-unit*2;
 }
 
 .mushroom{

@@ -62,13 +62,13 @@ module.exports = function (grunt) {
       }
     },
     processhtml: {
-      options: {
-        data: {
-          sitetitle: 'Wolfhound Media Design',
-          message: 'Hello world!'
-        }
-      },
       build: {
+        options: {
+          process: true,
+          data: {
+            sitetitle: 'Wolfhound Media Design Demos'
+          }
+        },
         files: [
           {expand: true, cwd: 'build/', src: ['*.html'], dest: 'build/'}
         ]
