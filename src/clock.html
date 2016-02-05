@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="clockApp">
+  <head>
+    <!-- build:include templates/header.html -->
+    <!-- /build -->
+    <title>Clock - <%= sitetitle %></title>
+    <link rel="stylesheet" href="css/demos/clock.css">
+  </head>
+  <body class="feckin-grid clock" ng-controller="clockCtrl">
+
+  <div class="a-feckin-row">
+    <div class="a-feckin-column width-1-in-12">
+      <div class="content">
+        <p class="centertext textuppercase">Age</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-feckin-row">
+    <div class="a-feckin-column width-3-in-12">
+      <div class="content centertext">
+        <p class="largetext">{{ years }}</p>
+        <p class="textuppercase">years</p>
+      </div>
+    </div>
+    <div class="a-feckin-column width-3-in-12">
+      <div class="content centertext">
+        <p class="largetext">{{ weeks }}</p>
+        <p class="textuppercase">weeks</p>
+      </div>
+    </div>
+    <div class="a-feckin-column width-3-in-12">
+      <div class="content centertext">
+      <p class="largetext">{{ days }}</p>
+      <p class="textuppercase">days</p>
+      </div>
+    </div><!--
+    <div class="a-feckin-column width-5-in-12">
+      <div class="content">1</div>
+    </div>
+    <div class="a-feckin-column width-5-in-12">
+      <div class="content">1</div>
+    </div> -->
+  </div>
+
+  <div class="a-feckin-row">
+    <div class="a-feckin-column width-1-in-12">
+      <div class="content centertext">
+        <p>{{ age }}</p>
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- build:include templates/footer.html -->
+    <!-- /build -->
+    <script src="js/vendor/angular-1.4.8.min.js"></script>
+    <script>
+    'use strict';
+
+    angular.module('clockApp', [])
+    .controller('clockCtrl', ['$scope', function ($scope) {
+      var birthday = new Date("2015-09-17T18:48:00+0000"); // offset by an hour, exact time 19:48
+      var nowMilliseconds = Date.now();
+      var birthdayMilliseconds = birthday.getTime();
+
+      var age = function (now, birthday){
+        var dateDiff = now - birthday;
+        $scope.days = Math.round((dateDiff / (1000*60*60*24)));
+        console.log('dateDiff: ' + dateDiff);
+        $scope.years = Math.round($scope.days / 365);
+        $scope.weeks = Math.round($scope.days / 7);
+      }
+
+      age(nowMilliseconds, birthdayMilliseconds);
+    }]);
+    </script>
+  </body>
+</html>

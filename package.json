@@ -32,7 +32,11 @@
     "grunt-phantom": "^0.2.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-concat": "~0.5.1",
-    "grunt-processhtml": "~0.3.8"
+    "grunt-processhtml": "~0.3.8",
+    "grunt-ftp-push": "~0.4.4"
   },
-  "homepage": "https://github.com/harrymckillen/demos.wolfhound.ie"
+  "homepage": "https://github.com/harrymckillen/demos.wolfhound.ie",
+  "dependencies": {
+    "express": "~4.13.4"
+  }
 }

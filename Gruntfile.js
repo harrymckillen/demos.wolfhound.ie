@@ -1,17 +1,31 @@
-'use script';
-/* global 
+/*jslint
+    white */
+/* global
   grunt */
 module.exports = function (grunt) {
-  grunt.log.writeln('Testing');
-  grunt.log.oklns('Testing');
-  grunt.log.errorlns('Testing');
+  'use script';
 
+  // Configs
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    hosts: grunt.file.readJSON('hosts.json'),
+    ftp_push: {
+      sampleftpTest: {
+        options: {
+          authKey: "demos1",
+          host: '<%= hosts.live.remoteurl %>',
+          dest: '<%= hosts.live.remotedir %>',
+          port: 21,
+          debug: false
+        },
+        files: [
+          {expand: true,cwd: 'build',src: ['**/*']}
+        ]
+      }
+    },
     copy: {
       build: {
         files: [
-          // { src: 'src/*.html', dest: 'build/*.html' },
           {expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'build/'},
           {expand: true, cwd: 'src/', src: ['font/**'], dest: 'build/'},
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'build/'},
@@ -53,13 +67,8 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      css: {
-        files: '**/*.scss',
-        tasks: ['sass:build'],
-        options: {
-          livereload: true
-        }
-      }
+      files: ['src/**/*'],
+      tasks: ['build']
     },
     processhtml: {
       build: {
@@ -76,6 +85,7 @@ module.exports = function (grunt) {
     }
   });
 
+  // Load NPM Tasks
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -83,6 +93,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-processhtml');
+  grunt.loadNpmTasks('grunt-ftp-push');
+
+  // Registered Tasks
   grunt.registerTask('build',
     [
       'clean:build',
@@ -98,5 +111,9 @@ module.exports = function (grunt) {
     [
       'build',
       'watch'
+    ]);
+  grunt.registerTask('ftp',
+    [
+      'ftp_push'
     ]);
 };
