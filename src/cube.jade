@@ -1,0 +1,42 @@
+extends templates/html.jade
+
+append head
+  link(rel = "stylesheet" href = "css/demos/cube.css")
+
+
+block title
+  title Cube - Wolfhound
+
+block body
+  body.cube
+    block content
+      section.container
+        div#cube
+          figure.front 1
+          figure.back 2
+          figure.right 3
+          figure.left 4
+          figure.top 5
+          figure.bottom 6
+
+      ul
+        li
+          a.toggle(href="#" data-face="show-front") Toggle 1
+        li
+          a.toggle(href="#" data-face="show-back") Toggle 2
+        li
+          a.toggle(href="#" data-face="show-right") Toggle 3
+        li
+          a.toggle(href="#" data-face="show-left") Toggle 4
+        li
+          a.toggle(href="#" data-face="show-top") Toggle 5
+        li
+          a.toggle(href="#" data-face="show-bottom") Toggle 6
+
+      append footer
+        script(type="text/javascript").
+          $(document).ready(function(){
+            $('.toggle').click(function(e){
+              $('#cube').removeClass().addClass($(this).attr('data-face'));
+            })
+          });

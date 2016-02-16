@@ -1,52 +1,49 @@
 <!DOCTYPE html>
-<html>
-    <head>
-              <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="css/demos.css">
-        <title>Cube - Wolfhound Media Design Demos</title>
-        <link rel="stylesheet" href="css/demos/cube.css">
-    </head>
-    <body>
-        <section class="container">
-          <div id="cube">
-            <figure class="front">1</figure>
-            <figure class="back">2</figure>
-            <figure class="right">3</figure>
-            <figure class="left">4</figure>
-            <figure class="top">5</figure>
-            <figure class="bottom">6</figure>
-          </div>
-        </section>
-
-        <ul>
-          <li><a href="#" class="toggle" data-face="show-front">Toggle 1</a></li>
-          <li><a href="#" class="toggle" data-face="show-back">Toggle 2</a></li>
-          <li><a href="#" class="toggle" data-face="show-right">Toggle 3</a></li>
-          <li><a href="#" class="toggle" data-face="show-left">Toggle 4</a></li>
-          <li><a href="#" class="toggle" data-face="show-top">Toggle 5</a></li>
-          <li><a href="#" class="toggle" data-face="show-bottom">Toggle 6</a></li>
-        </ul>
-        
-            <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>Cube - Wolfhound</title>
+    <link rel="stylesheet" href="css/demos.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     <script src="js/vendor/jquery-1.10.2.min.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
       ga('create', 'UA-44476707-1', 'wolfhound.ie');
       ga('send', 'pageview');
     </script>
-        <script type="text/javascript">
-        $(document).ready(function(){
-          $('.toggle').click(function(e){
-            $('#cube').removeClass().addClass($(this).attr('data-face'));
-          })
-        });
-        </script>
-    </body>
+    <link rel="stylesheet" href="css/demos/cube.css">
+  </head>
+  <body class="cube">
+    <section class="container">
+      <div id="cube">
+        <figure class="front">1</figure>
+        <figure class="back">2</figure>
+        <figure class="right">3</figure>
+        <figure class="left">4</figure>
+        <figure class="top">5</figure>
+        <figure class="bottom">6</figure>
+      </div>
+    </section>
+    <ul>
+      <li><a href="#" data-face="show-front" class="toggle">Toggle 1</a></li>
+      <li><a href="#" data-face="show-back" class="toggle">Toggle 2</a></li>
+      <li><a href="#" data-face="show-right" class="toggle">Toggle 3</a></li>
+      <li><a href="#" data-face="show-left" class="toggle">Toggle 4</a></li>
+      <li><a href="#" data-face="show-top" class="toggle">Toggle 5</a></li>
+      <li><a href="#" data-face="show-bottom" class="toggle">Toggle 6</a></li>
+    </ul>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.toggle').click(function(e){
+          $('#cube').removeClass().addClass($(this).attr('data-face'));
+        })
+      });
+    </script>
+  </body>
 </html>

@@ -1,0 +1,54 @@
+extends templates/html.jade
+
+append head
+  link(rel = "stylesheet" href = "css/demos/clock.css")
+
+block title
+  title Clock - Wolfhound
+
+block body
+  body.clock.feckin-grid
+    block content
+      div(ng-app="clockApp")
+        div(ng-controller="clockCtrl")
+          div.a-feckin-row
+            div.a-feckin-column.width-1-in-12
+              div.content
+                p.centertext.textuppercase Age
+
+          div.a-feckin-row
+            div.a-feckin-column.width-3-in-12
+              div.content.centertext
+                p.largetext {{ years }}
+                p.textuppercase years
+
+            div.a-feckin-column.width-3-in-12
+              div.content.centertext
+                p.largetext {{ weeks }}
+                p.textuppercase weeks
+
+            div.a-feckin-column.width-3-in-12
+              div.content.centertext
+                p.largetext {{ days }}
+                p.textuppercase days
+
+      script(src="js/vendor/angular-1.4.8.min.js")
+      script.
+        'use strict';
+
+        angular.module('clockApp', [])
+        .controller('clockCtrl', ['$scope', function ($scope) {
+          var birthday = new Date("2015-09-17T18:48:00+0000"); // offset by an hour, exact time 19:48
+          var nowMilliseconds = Date.now();
+          var birthdayMilliseconds = birthday.getTime();
+
+          var age = function (now, birthday){
+            var dateDiff = now - birthday;
+            $scope.days = Math.round((dateDiff / (1000*60*60*24)));
+            console.log('dateDiff: ' + dateDiff);
+            $scope.years = Math.round($scope.days / 365);
+            $scope.weeks = Math.round($scope.days / 7);
+          }
+
+          age(nowMilliseconds, birthdayMilliseconds);
+        }]);

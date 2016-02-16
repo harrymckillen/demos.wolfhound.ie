@@ -26,7 +26,7 @@ module.exports = function (grunt) {
     copy: {
       build: {
         files: [
-          {expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'build/'},
+          // {expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'build/'},
           {expand: true, cwd: 'src/', src: ['font/**'], dest: 'build/'},
           {expand: true, cwd: 'src/', src: ['img/**'], dest: 'build/'},
           {expand: true, cwd: 'src/', src: ['js/**'], dest: 'build/'}
@@ -59,6 +59,22 @@ module.exports = function (grunt) {
           base: 'build/',
           open: true
         }
+      }
+    },
+    jade: {
+      compile: {
+        options: {
+          pretty: true
+        },
+        files: [
+          {
+            cwd: "src",
+            src: ["**/*.jade", "!templates/**/*.jade"],
+            dest: "build",
+            expand: true,
+            ext: ".html"
+          }
+        ]
       }
     },
     clean: {
@@ -94,6 +110,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-ftp-push');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
   // Registered Tasks
   grunt.registerTask('build',
@@ -101,7 +118,7 @@ module.exports = function (grunt) {
       'clean:build',
       'sass:build',
       'copy:build',
-      'processhtml:build'
+      'jade:compile'
     ]);
   grunt.registerTask('default',
     [
