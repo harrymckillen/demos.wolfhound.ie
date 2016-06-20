@@ -120,6 +120,10 @@ module.exports = function (grunt) {
       'copy:build',
       'jade:compile'
     ]);
+  grunt.registerTask('wipe',
+    [
+      'clean:build'
+    ]);
   grunt.registerTask('default',
     [
       'build'

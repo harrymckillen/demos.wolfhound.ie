@@ -2,3 +2,24 @@
 @import 'libs/normalize';
 @import 'libs/main';
 @import 'libs/yafgs.min';
+
+.rocket-container{
+    width:100%;
+    display: block;
+}
+.rocket{
+    position: absolute;
+    bottom: -0.28em;
+    color: #444;
+    display: block;
+    font-size: 10em;
+    width: 1.5em;
+    text-align: center;
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.demo-menu {
+  margin:10px;
+}
