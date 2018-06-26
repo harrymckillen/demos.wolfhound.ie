@@ -22,8 +22,8 @@ block content
 
         div.a-feckin-column.width-3-in-12
           div.content.centertext
-            p.largetext {{ weeks }}
-            p.textuppercase weeks
+            p.largetext {{ months }}
+            p.textuppercase months
 
         div.a-feckin-column.width-3-in-12
           div.content.centertext
@@ -32,22 +32,24 @@ block content
 
 append footer
   script(src="js/vendor/angular-1.4.8.min.js")
+  script(src="js/vendor/moment.js")
   script.
     'use strict';
 
     angular.module('clockApp', [])
     .controller('clockCtrl', ['$scope', function ($scope) {
-      var birthday = new Date("2015-09-17T18:48:00+0000"); // offset by an hour, exact time 19:48
-      var nowMilliseconds = Date.now();
-      var birthdayMilliseconds = birthday.getTime();
+      var nowMilliseconds = moment();
+      var birthday = moment([2015, 8, 17]);
 
-      var age = function (now, birthday){
-        var dateDiff = now - birthday;
-        $scope.days = Math.round((dateDiff / (1000*60*60*24)));
-        //- console.log('dateDiff: ' + dateDiff);
-        $scope.years = Math.round($scope.days / 365);
-        $scope.weeks = Math.round($scope.days / 7);
-      }
+      var years = nowMilliseconds.diff(birthday, 'years');
+      birthday.add(years, 'years');
+      $scope.years = years;
 
-      age(nowMilliseconds, birthdayMilliseconds);
+      var months = nowMilliseconds.diff(birthday, 'months');
+      birthday.add(months, 'months');
+      $scope.months = months;
+
+      var days = nowMilliseconds.diff(birthday, 'days');
+      $scope.days = days;
+
     }]);
