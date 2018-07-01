@@ -123,7 +123,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
       hosts: grunt.file.readJSON('hosts.json'),
       ftp_push: {
-        sampleftpTest: {
+        full: {
           options: {
             authKey: "demos1",
             host: '<%= hosts.live.remoteurl %>',
@@ -137,5 +137,8 @@ module.exports = function (grunt) {
         }
       }
     });
+    grunt.task.run([
+      'ftp_push:full'
+    ]);
   });
 };
