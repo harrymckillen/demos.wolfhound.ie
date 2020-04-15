@@ -1,0 +1,59 @@
+extends templates/html.pug
+
+append head
+  link(rel = "stylesheet" href = "css/demos/clock.css")
+
+block title
+  title Clock - Wolfhound
+
+block content
+  div(ng-app="clockApp").clock.feckin-grid
+    div(ng-controller="clockCtrl")
+
+      div.a-feckin-row(ng-repeat="paiste in paisti")
+        p(ng-if="paiste.weeks")  {{ paiste.weeks }} weeks, {{ paiste.days }} days
+        p(ng-if="paiste.months") {{ paiste.years }} years, {{ paiste.months }} months, {{ paiste.days }} days
+
+append footer
+  script(src="js/vendor/angular-1.4.8.min.js")
+  script(src="js/vendor/moment.js")
+  script.
+    'use strict';
+
+    angular.module('clockApp', [])
+    .controller('clockCtrl', ['$scope', function ($scope) {
+      var nowMilliseconds = moment();
+      $scope.paisti = [];
+
+      var birthdays = [moment([2020, 0, 29]), moment([2015, 8, 17])];
+
+      birthdays.forEach(function(birthday){
+        getAge(birthday);
+      });
+
+      function getAge(birthday) {
+        var paiste = {};
+
+        var years = nowMilliseconds.diff(birthday, 'years');
+        birthday.add(years, 'years');
+        paiste.years = years;
+
+        var months = nowMilliseconds.diff(birthday, 'months');
+
+        if (years === 0 && months < 6){
+          var weeks = nowMilliseconds.diff(birthday, 'weeks');
+          birthday.add(weeks, 'weeks');
+          paiste.weeks = weeks;
+        } else {
+          birthday.add(months, 'months');
+          paiste.months = months;
+        }
+
+        var days = nowMilliseconds.diff(birthday, 'days');
+        paiste.days = days;
+
+        $scope.paisti.push(paiste);
+      }
+
+
+    }]);
