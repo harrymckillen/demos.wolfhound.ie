@@ -111,13 +111,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('ftp', function(){
     grunt.initConfig({
-      hosts: grunt.file.readJSON('hosts.json'),
+      hosts: grunt.file.readJSON('host.json'),
       ftp_push: {
         full: {
           options: {
-            authKey: "demos1",
-            host: '<%= hosts.live.remoteurl %>',
-            dest: '<%= hosts.live.remotedir %>',
+            authKey: "demos",
+            host: '<%= hosts.demo.remoteurl %>',
+            dest: '<%= hosts.demo.remotedir %>',
             port: 21,
             debug: false
           },
