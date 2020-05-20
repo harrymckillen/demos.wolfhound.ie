@@ -4,13 +4,13 @@ append head
   link(rel = "stylesheet" href = "css/demos/clock.css")
 
 block title
-  title Clock - Wolfhound
+  title Clock - Wolfhound X
 
 block content
-  div(ng-app="clockApp").clock.feckin-grid
-    div(ng-controller="clockCtrl")
+  div(ng-app="clockApp").clock.a-row
+    div.a-column(ng-controller="clockCtrl")
 
-      div.a-feckin-row(ng-repeat="paiste in paisti")
+      div(ng-repeat="paiste in paisti")
         p(ng-if="paiste.weeks")  {{ paiste.weeks }} weeks, {{ paiste.days }} days
         p(ng-if="paiste.months") {{ paiste.years }} years, {{ paiste.months }} months, {{ paiste.days }} days
 

@@ -9,7 +9,6 @@ module.exports = function (grunt) {
 
   // Configs
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
     copy: {
       build: {
         files: [
@@ -105,7 +104,6 @@ module.exports = function (grunt) {
   grunt.registerTask('serve',
     [
       'build',
-      'connect',
       'watch'
     ]);
 
